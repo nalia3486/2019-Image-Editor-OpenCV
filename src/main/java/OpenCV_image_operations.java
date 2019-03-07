@@ -23,29 +23,29 @@ import java.io.FileOutputStream;
 import java.util.List;
 
 
-public class Main {
+public class OpenCV_image_operations {
     static {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
     }
 
-    public static void main(String[] args) {
-        //readImage("cat.jpg");
-        //readImage("lenka.png");
+//    public static void main(String[] args) {
+//        //readImage("cat.jpg");
+//        //readImage("lenka.png");
+//
+//        try {
+//            imageToPDF("lenka.png");
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
+//
+//        Mat img = Imgcodecs.imread("1.jpg");
+//        Mat img1 = Imgcodecs.imread("2.jpg");
+//
+//        superimposingImages(img, img1);
+//
+//    }
 
-        try {
-            imageToPDF("lenka.png");
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        Mat img = Imgcodecs.imread("1.jpg");
-        Mat img1 = Imgcodecs.imread("2.jpg");
-
-        superimposingImages(img, img1);
-
-    }
-
-    private static void superimposingImages(Mat img, Mat img1) {
+    static void superimposingImages(Mat img, Mat img1) {
         Mat img3 = new Mat();
         Core.addWeighted(img, 0.5, img1, 0.5, 0, img3);
         BufferedImage image = Mat2BufferedImage(img3);
@@ -53,7 +53,7 @@ public class Main {
     }
 
 
-    private static void imageToPDF(String filename) throws Exception {
+    static void imageToPDF(String filename) throws Exception {
         File root = new File("..\\2019-Image-Editor-OpenCV");
 
         String outputFile = "some.pdf";
@@ -81,7 +81,7 @@ public class Main {
         document.close();
     }
 
-    private static void readImage(String filename) {
+    static void readImage(String filename) {
         Mat lena = Imgcodecs.imread(filename);
         if (lena.empty()) {
             System.out.println("Could not open or find the image");
@@ -92,7 +92,7 @@ public class Main {
         }
     }
 
-    private static BufferedImage Mat2BufferedImage(Mat m) {
+    static BufferedImage Mat2BufferedImage(Mat m) {
         int type = BufferedImage.TYPE_BYTE_GRAY;
         if (m.channels() > 1) {
             type = BufferedImage.TYPE_3BYTE_BGR;
@@ -106,7 +106,7 @@ public class Main {
         return image;
     }
 
-    private static void displayImage(Image img) {
+    static void displayImage(Image img) {
         ImageIcon icon = new ImageIcon(img);
         JFrame frame = new JFrame();
         frame.setLayout(new FlowLayout());
