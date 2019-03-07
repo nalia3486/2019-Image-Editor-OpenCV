@@ -33,11 +33,25 @@ public class Main {
         //readImage("lenka.png");
 
         try {
-            imageToPDF("test.jpg");
+            imageToPDF("lenka.png");
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        Mat img = Imgcodecs.imread("1.jpg");
+        Mat img1 = Imgcodecs.imread("2.jpg");
+
+        superimposingImages(img, img1);
+
     }
+
+    private static void superimposingImages(Mat img, Mat img1) {
+        Mat img3 = new Mat();
+        Core.addWeighted(img, 0.5, img1, 0.5, 0, img3);
+        BufferedImage image = Mat2BufferedImage(img3);
+        displayImage(Mat2BufferedImage(img3));
+    }
+
 
     private static void imageToPDF(String filename) throws Exception {
         File root = new File("..\\2019-Image-Editor-OpenCV");
