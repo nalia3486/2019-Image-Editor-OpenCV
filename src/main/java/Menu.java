@@ -44,6 +44,9 @@ public class Menu {
                 System.out.println("You chose to open this file: " +
                         chooser.getSelectedFile().getName());
                 OpenCV.readImage(chooser.getSelectedFile().getAbsolutePath());
+                rozmazButton.setEnabled(true);
+                wyostrzButton.setEnabled(true);
+                obrazCzarnoBialyButton.setEnabled(true);
             }
         });
     }
