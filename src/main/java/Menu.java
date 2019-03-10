@@ -58,8 +58,11 @@ public class Menu {
 
     private void enableElements(boolean view) {
         rozmazslider.setMinimum(0);
-        rozmazslider.setMaximum(20);
-        rozmazslider.setValue(10);
+        rozmazslider.setMaximum(70);
+        rozmazslider.setValue(35);
+        rozmazslider.setMajorTickSpacing(7);
+        rozmazslider.setMinorTickSpacing(7);
+        rozmazslider.setPaintTicks(true);
         wyostrzslider.setMinimum(0);
         wyostrzslider.setMaximum(20);
         wyostrzslider.setValue(10);
