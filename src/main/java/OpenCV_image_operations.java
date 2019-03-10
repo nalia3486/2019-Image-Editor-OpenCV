@@ -43,6 +43,15 @@ public class OpenCV_image_operations {
 //
 //        superimposingImages(img, img1);
 //
+
+    //readImage("cat.jpg");
+    //readImage("lenka.png");
+
+
+//        Mat img = Imgcodecs.imread("1.jpg");
+//        Mat img1 = Imgcodecs.imread("2.jpg");
+//
+//        OpenCV_image_operations.superimposingImages(img, img1);
 //    }
 
     static void superimposingImages(Mat img, Mat img1) {
