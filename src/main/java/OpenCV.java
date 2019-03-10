@@ -23,7 +23,7 @@ import java.io.FileOutputStream;
 import java.util.List;
 
 
-public class OpenCV_image_operations {
+public class OpenCV {
     static {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
     }
@@ -51,7 +51,7 @@ public class OpenCV_image_operations {
 //        Mat img = Imgcodecs.imread("1.jpg");
 //        Mat img1 = Imgcodecs.imread("2.jpg");
 //
-//        OpenCV_image_operations.superimposingImages(img, img1);
+//        OpenCV.superimposingImages(img, img1);
 //    }
 
     static void superimposingImages(Mat img, Mat img1) {
@@ -101,7 +101,7 @@ public class OpenCV_image_operations {
         }
     }
 
-    static BufferedImage Mat2BufferedImage(Mat m) {
+    private static BufferedImage Mat2BufferedImage(Mat m) {
         int type = BufferedImage.TYPE_BYTE_GRAY;
         if (m.channels() > 1) {
             type = BufferedImage.TYPE_3BYTE_BGR;
@@ -115,7 +115,7 @@ public class OpenCV_image_operations {
         return image;
     }
 
-    static void displayImage(Image img) {
+    private static void displayImage(Image img) {
         ImageIcon icon = new ImageIcon(img);
         JFrame frame = new JFrame();
         frame.setLayout(new FlowLayout());
@@ -124,6 +124,6 @@ public class OpenCV_image_operations {
         label.setIcon(icon);
         frame.add(label);
         frame.setVisible(true);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
 }

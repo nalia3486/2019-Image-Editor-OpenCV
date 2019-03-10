@@ -34,13 +34,13 @@
           <text value="Wyostrz"/>
         </properties>
       </component>
-      <component id="fafb2" class="javax.swing.JButton" binding="filtrButton" default-binding="true">
+      <component id="fafb2" class="javax.swing.JButton" binding="obrazCzarnoBialyButton" default-binding="true">
         <constraints>
           <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <enabled value="false"/>
-          <text value="Filtr"/>
+          <text value="Obraz czarno-biały"/>
         </properties>
       </component>
     </children>
