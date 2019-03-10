@@ -19,40 +19,31 @@ public class Menu {
     private String filename;
 
     private Menu() {
-        wczytajPlikButton.addActionListener(e -> {
-            JFileChooser chooser = new JFileChooser();
-            FileNameExtensionFilter filter = new FileNameExtensionFilter(
-                    "JPG & PNG Images", "jpg", "png");
-            chooser.setFileFilter(filter);
-            int returnVal = chooser.showOpenDialog(getRootFrame());
-            if (returnVal == JFileChooser.APPROVE_OPTION) {
-                filepath = chooser.getSelectedFile().getAbsolutePath();
-                filename = chooser.getSelectedFile().getName();
-                System.out.println("You chose to open this file: " + filename);
-                jFrame.setTitle(chooser.getSelectedFile().getName());
-                if (OpenCV.readImage(filepath, filename, jFrame)) {
-                    System.out.println("File successfully loaded");
-                    enableElements(true);
-                } else {
-                    enableElements(false);
-                }
-            }
-        });
+        wczytajPlikButton.addActionListener(e -> chooseImage());
 
+        rozmazButton.addActionListener(e -> OpenCV.addGaussianBlur(7, true, filename, jFrame));
 
-        rozmazButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                OpenCV.addGaussianBlur(15, true, filename, jFrame);
-            }
-        });
+        wyostrzButton.addActionListener(e -> OpenCV.addGaussianBlur(0, false, filename, jFrame));
+    }
 
-        wyostrzButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                OpenCV.addGaussianBlur(15, false, filename, jFrame);
+    private void chooseImage() {
+        JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "JPG & PNG Images", "jpg", "png");
+        chooser.setFileFilter(filter);
+        int returnVal = chooser.showOpenDialog(getRootFrame());
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            filepath = chooser.getSelectedFile().getAbsolutePath();
+            filename = chooser.getSelectedFile().getName();
+            System.out.println("You chose to open this file: " + filename);
+            jFrame.setTitle(chooser.getSelectedFile().getName());
+            if (OpenCV.readImage(filepath, filename, jFrame)) {
+                System.out.println("File successfully loaded");
+                enableElements(true);
+            } else {
+                enableElements(false);
             }
-        });
+        }
     }
 
     private void enableElements(boolean view) {
