@@ -12,7 +12,6 @@ public class Menu {
     private JSlider rozmazslider;
     private JSlider wyostrzslider;
     private JFrame jFrame = new JFrame();
-    private String sciezka;
 
     private Menu() {
         wczytajPlikButton.addActionListener(e -> {
@@ -24,9 +23,7 @@ public class Menu {
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                 System.out.println("You chose to open this file: " +
                         chooser.getSelectedFile().getName());
-                sciezka = chooser.getSelectedFile().getAbsolutePath();
-                jFrame.setTitle(chooser.getSelectedFile().getName());
-                if (OpenCV.readImage(sciezka, jFrame)) {
+                if (OpenCV.readImage(chooser.getSelectedFile().getAbsolutePath(), jFrame)) {
                     System.out.println("File successfully loaded");
                     enableElements();
                 }
@@ -43,7 +40,7 @@ public class Menu {
     }
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("IMGEditor");
+        JFrame frame = new JFrame("Transform the image");
         frame.setContentPane(new Menu().Menu);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
