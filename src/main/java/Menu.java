@@ -55,7 +55,7 @@ public class Menu {
     }
 
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Transform the image");
+        JFrame frame = new JFrame("IMGEditor");
         frame.setContentPane(new Menu().Menu);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
