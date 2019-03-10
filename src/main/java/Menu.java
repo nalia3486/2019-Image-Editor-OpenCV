@@ -11,9 +11,9 @@ public class Menu {
     private JButton obrazCzarnoBialyButton;
     private JSlider rozmazslider;
     private JSlider wyostrzslider;
-    private JLabel obraz = new JLabel();
+    private JFrame jFrame = new JFrame();
 
-    Menu() {
+    private Menu() {
         wczytajPlikButton.addActionListener(e -> {
             JFileChooser chooser = new JFileChooser();
             FileNameExtensionFilter filter = new FileNameExtensionFilter(
@@ -23,9 +23,10 @@ public class Menu {
             if (returnVal == JFileChooser.APPROVE_OPTION) {
                 System.out.println("You chose to open this file: " +
                         chooser.getSelectedFile().getName());
-                OpenCV.readImage(chooser.getSelectedFile().getAbsolutePath());
-
-                enableElements();
+                if (OpenCV.readImage(chooser.getSelectedFile().getAbsolutePath(), jFrame)) {
+                    System.out.println("File successfully loaded");
+                    enableElements();
+                }
             }
         });
     }
@@ -39,12 +40,12 @@ public class Menu {
     }
 
     public static void main(String[] args) {
-        JFrame frame1 = new JFrame("Transform the image");
-        frame1.setContentPane(new Menu().Menu);
-        frame1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame1.pack();
-        frame1.setSize(500, 500);
-        frame1.setVisible(true);
+        JFrame frame = new JFrame("Transform the image");
+        frame.setContentPane(new Menu().Menu);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.pack();
+        frame.setSize(500, 500);
+        frame.setVisible(true);
 
         try {
             OpenCV.imageToPDF("lenka.png");

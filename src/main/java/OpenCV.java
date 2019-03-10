@@ -28,11 +28,11 @@ public class OpenCV {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
     }
 
-    static void superimposingImages(Mat img, Mat img1) {
+    static void superimposingImages(Mat img, Mat img1, JFrame jFrame) {
         Mat img3 = new Mat();
         Core.addWeighted(img, 0.5, img1, 0.5, 0, img3);
         BufferedImage image = Mat2BufferedImage(img3);
-        displayImage(Mat2BufferedImage(img3));
+        displayImage(Mat2BufferedImage(img3), jFrame);
     }
 
 
@@ -64,14 +64,16 @@ public class OpenCV {
         document.close();
     }
 
-    static void readImage(String filename) {
+    static boolean readImage(String filename, JFrame jFrame) {
         Mat lena = Imgcodecs.imread(filename);
         if (lena.empty()) {
             System.out.println("Could not open or find the image");
+            return false;
         } else {
             System.out.println(lena.size());
             Imgcodecs.imwrite(filename, lena);
-            displayImage(Mat2BufferedImage(lena));
+            displayImage(Mat2BufferedImage(lena), jFrame);
+            return true;
         }
     }
 
@@ -89,9 +91,10 @@ public class OpenCV {
         return image;
     }
 
-    private static void displayImage(Image img) {
+    private static void displayImage(Image img, JFrame frame) {
+        frame.getContentPane().removeAll();
+        frame.repaint();
         ImageIcon icon = new ImageIcon(img);
-        JFrame frame = new JFrame();
         frame.setLayout(new FlowLayout());
         frame.setSize(img.getWidth(null) + 50, img.getHeight(null) + 50);
         JLabel label = new JLabel();
