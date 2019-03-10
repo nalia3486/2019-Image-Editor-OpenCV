@@ -28,32 +28,6 @@ public class OpenCV {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
     }
 
-//    public static void main(String[] args) {
-//        //readImage("cat.jpg");
-//        //readImage("lenka.png");
-//
-//        try {
-//            imageToPDF("lenka.png");
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-//
-//        Mat img = Imgcodecs.imread("1.jpg");
-//        Mat img1 = Imgcodecs.imread("2.jpg");
-//
-//        superimposingImages(img, img1);
-//
-
-    //readImage("cat.jpg");
-    //readImage("lenka.png");
-
-
-//        Mat img = Imgcodecs.imread("1.jpg");
-//        Mat img1 = Imgcodecs.imread("2.jpg");
-//
-//        OpenCV.superimposingImages(img, img1);
-//    }
-
     static void superimposingImages(Mat img, Mat img1) {
         Mat img3 = new Mat();
         Core.addWeighted(img, 0.5, img1, 0.5, 0, img3);
