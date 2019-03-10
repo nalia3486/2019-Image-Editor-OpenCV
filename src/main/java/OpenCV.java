@@ -11,14 +11,18 @@ import javax.swing.*;
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 
+import org.opencv.core.Size;
 import org.opencv.imgcodecs.Imgcodecs;
 
 import com.itextpdf.text.Document;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.pdf.PdfWriter;
+import org.opencv.imgproc.Imgproc;
 
 import java.io.FileOutputStream;
 import java.util.List;
+
+import static org.opencv.core.Core.addWeighted;
 
 
 public class OpenCV {
@@ -28,7 +32,7 @@ public class OpenCV {
 
     static void superimposingImages(Mat img, Mat img1, JFrame jFrame) {
         Mat img3 = new Mat();
-        Core.addWeighted(img, 0.5, img1, 0.5, 0, img3);
+        addWeighted(img, 0.5, img1, 0.5, 0, img3);
         BufferedImage image = Mat2BufferedImage(img3);
         displayImage(Mat2BufferedImage(img3), jFrame);
     }
@@ -62,8 +66,8 @@ public class OpenCV {
         document.close();
     }
 
-    static boolean readImage(String filename, JFrame jFrame) {
-        Mat lena = Imgcodecs.imread(filename);
+    static boolean readImage(String filepath, String filename, JFrame jFrame) {
+        Mat lena = Imgcodecs.imread(filepath);
         if (lena.empty()) {
             System.out.println("Could not open or find the image");
             JOptionPane.showMessageDialog(null, "Wybrano niewłaściwy format pliku", "Błąd", JOptionPane.ERROR_MESSAGE);
@@ -102,5 +106,20 @@ public class OpenCV {
         frame.setLocation(505, 10);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+    }
+
+
+    static void addGaussianBlur(int size, boolean blur, String name, JFrame jFrame) {
+        Mat dst = new Mat();
+        Mat src = Imgcodecs.imread(name);
+        if (!blur) {
+            Imgproc.GaussianBlur(src, dst, new Size(0, 0), 3);
+            addWeighted(src, 1.5, dst, -0.5, 0, dst);
+        } else {
+            Imgproc.GaussianBlur(src, dst, new Size(size, size), 3);
+        }
+        System.out.println("Added Gaussian Blur");
+        Imgcodecs.imwrite(name, dst);
+        displayImage(Mat2BufferedImage(dst), jFrame);
     }
 }
