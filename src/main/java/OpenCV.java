@@ -6,9 +6,7 @@ import java.io.File;
 
 import java.util.ArrayList;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.*;
 
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
@@ -68,6 +66,7 @@ public class OpenCV {
         Mat lena = Imgcodecs.imread(filename);
         if (lena.empty()) {
             System.out.println("Could not open or find the image");
+            JOptionPane.showMessageDialog(null, "Wybrano niewłaściwy format pliku", "Błąd", JOptionPane.ERROR_MESSAGE);
             return false;
         } else {
             System.out.println(lena.size());
@@ -100,6 +99,7 @@ public class OpenCV {
         JLabel label = new JLabel();
         label.setIcon(icon);
         frame.add(label);
+        frame.setLocation(505, 10);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
