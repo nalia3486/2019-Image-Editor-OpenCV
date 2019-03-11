@@ -4,6 +4,8 @@ import org.opencv.imgcodecs.Imgcodecs;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.*;
 
 import static javax.swing.JOptionPane.getRootFrame;
 
@@ -50,29 +52,70 @@ public class Menu {
             if (gaussarozmazRadioButton.isSelected())
                 OpenCV.addGaussianBlur(5, true, filename, jFrame, 0, 0);
             else if (medianowerozmazRadioButton.isSelected())
-                OpenCV.addMedianBlur(5, filename, jFrame);
-            else OpenCV.addBilateralBlur(20, filename, jFrame);
+                OpenCV.addMedianBlur(5, true, filename, jFrame, 0, 0);
+            else OpenCV.addBilateralBlur(20, true, filename, jFrame, 0, 0);
         });
         rozmazsrednioButton.addActionListener(e -> {
             if (gaussarozmazRadioButton.isSelected())
                 OpenCV.addGaussianBlur(21, true, filename, jFrame, 0, 0);
             else if (medianowerozmazRadioButton.isSelected())
-                OpenCV.addMedianBlur(15, filename, jFrame);
-            else OpenCV.addBilateralBlur(60, filename, jFrame);
+                OpenCV.addMedianBlur(15, true, filename, jFrame, 0, 0);
+            else OpenCV.addBilateralBlur(60, true, filename, jFrame, 0, 0);
         });
         rozmazmocnoButton.addActionListener(e -> {
             if (gaussarozmazRadioButton.isSelected())
                 OpenCV.addGaussianBlur(71, true, filename, jFrame, 0, 0);
             else if (medianowerozmazRadioButton.isSelected())
-                OpenCV.addMedianBlur(25, filename, jFrame);
-            else OpenCV.addBilateralBlur(100, filename, jFrame);
+                OpenCV.addMedianBlur(25, true, filename, jFrame, 0, 0);
+            else OpenCV.addBilateralBlur(100, true, filename, jFrame, 0, 0);
         });
 
-        wyostrzslaboButton.addActionListener(e -> OpenCV.addGaussianBlur(0, false, filename, jFrame, 1.5, -0.5));
-        wyostrzsrednioButton.addActionListener(e -> OpenCV.addGaussianBlur(41, false, filename, jFrame, 2.0, -1));
-        wyostrzmocnoButton.addActionListener(e -> OpenCV.addGaussianBlur(101, false, filename, jFrame, 2.5, -1.5));
+        wyostrzslaboButton.addActionListener(e -> {
+            if (gaussawyostrzRadioButton.isSelected())
+                OpenCV.addGaussianBlur(5, false, filename, jFrame, 1.5, -0.5);
+            else if (medianowewyostrzRadioButton.isSelected()) {
+                OpenCV.addMedianBlur(5, false, filename, jFrame, 1.5, -0.5);
+            } else {
+                OpenCV.addBilateralBlur(20, false, filename, jFrame, 1.5, -0.5);
+            }
+        });
+        wyostrzsrednioButton.addActionListener(e ->
+        {
+            if (gaussawyostrzRadioButton.isSelected())
+                OpenCV.addGaussianBlur(41, false, filename, jFrame, 2.0, -1);
+            else if (medianowewyostrzRadioButton.isSelected()) {
+                OpenCV.addMedianBlur(15, false, filename, jFrame, 2.0, -1);
+            } else {
+                OpenCV.addBilateralBlur(60, false, filename, jFrame, 2.0, -1);
+            }
+        });
 
-        wyjdzButton.addActionListener(e -> System.exit(0));
+        wyostrzmocnoButton.addActionListener(e -> {
+            if (gaussawyostrzRadioButton.isSelected())
+                OpenCV.addGaussianBlur(101, false, filename, jFrame, 2.5, -1.5);
+            else if (medianowewyostrzRadioButton.isSelected()) {
+                OpenCV.addMedianBlur(55, false, filename, jFrame, 2.5, -1.5);
+            } else {
+                OpenCV.addBilateralBlur(200, false, filename, jFrame, 2.5, -1.5);
+            }
+        });
+
+        wyjdzButton.addActionListener(ex -> {
+            try {
+                Paths.get(filename);
+                Files.deleteIfExists(Paths.get(filename));
+            } catch (InvalidPathException | NullPointerException e) {
+                System.out.println("There is no file");
+            } catch (NoSuchFileException e) {
+                System.out.println("No such file/directory exists");
+            } catch (DirectoryNotEmptyException e) {
+                System.out.println("Directory is not empty");
+            } catch (IOException e) {
+                System.out.println("Invalid permissions");
+            }
+            System.out.println("Deletion successful");
+            System.exit(0);
+        });
 
         obrazCzarnoBialyButton.addActionListener(e -> OpenCV.readGrayscaleImage(filename, jFrame));
 

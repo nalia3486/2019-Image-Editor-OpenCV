@@ -125,19 +125,25 @@ public class OpenCV {
         displayImage(Mat2BufferedImage(dst), jFrame);
     }
 
-    static void addMedianBlur(int size, String name, JFrame jFrame) {
+    static void addMedianBlur(int size, boolean blur, String name, JFrame jFrame, double alpha, double beta) {
         Mat dst = new Mat();
         Mat src = Imgcodecs.imread(name);
         Imgproc.medianBlur(src, dst, size);
+        if (!blur) {
+            addWeighted(src, alpha, dst, beta, 0, dst);
+        }
         System.out.println("Added Median Blur");
         Imgcodecs.imwrite(name, dst);
         displayImage(Mat2BufferedImage(dst), jFrame);
     }
 
-    static void addBilateralBlur(int size, String name, JFrame jFrame) {
+    static void addBilateralBlur(int size, boolean blur, String name, JFrame jFrame, double alpha, double beta) {
         Mat dst = new Mat();
         Mat src = Imgcodecs.imread(name);
         Imgproc.bilateralFilter(src, dst, CV_64F, size, size);
+        if (!blur) {
+            addWeighted(src, alpha, dst, beta, 0, dst);
+        }
         System.out.println("Added Bilateral Blur");
         Imgcodecs.imwrite(name, dst);
         displayImage(Mat2BufferedImage(dst), jFrame);
