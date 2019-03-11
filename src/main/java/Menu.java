@@ -1,7 +1,9 @@
+import org.opencv.core.Mat;
+import org.opencv.imgcodecs.Imgcodecs;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.io.File;
 
 import static javax.swing.JOptionPane.getRootFrame;
 
@@ -56,54 +58,36 @@ public class Menu {
 
         obrazCzarnoBialyButton.addActionListener(e -> OpenCV.readGrayscaleImage(filename, jFrame));
 
-        gaussarozmazRadioButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                gaussarozmazRadioButton.setSelected(true);
-                medianowerozmazRadioButton.setSelected(false);
-                bilateralnerozmazRadioButton.setSelected(false);
-            }
+        gaussarozmazRadioButton.addActionListener(actionEvent -> {
+            gaussarozmazRadioButton.setSelected(true);
+            medianowerozmazRadioButton.setSelected(false);
+            bilateralnerozmazRadioButton.setSelected(false);
         });
-        medianowerozmazRadioButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                medianowerozmazRadioButton.setSelected(true);
-                gaussarozmazRadioButton.setSelected(false);
-                bilateralnerozmazRadioButton.setSelected(false);
-            }
+        medianowerozmazRadioButton.addActionListener(actionEvent -> {
+            medianowerozmazRadioButton.setSelected(true);
+            gaussarozmazRadioButton.setSelected(false);
+            bilateralnerozmazRadioButton.setSelected(false);
         });
-        bilateralnerozmazRadioButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                bilateralnerozmazRadioButton.setSelected(true);
-                medianowerozmazRadioButton.setSelected(false);
-                gaussarozmazRadioButton.setSelected(false);
-            }
+        bilateralnerozmazRadioButton.addActionListener(actionEvent -> {
+            bilateralnerozmazRadioButton.setSelected(true);
+            medianowerozmazRadioButton.setSelected(false);
+            gaussarozmazRadioButton.setSelected(false);
         });
 
-        gaussawyostrzRadioButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                gaussawyostrzRadioButton.setSelected(true);
-                medianowewyostrzRadioButton.setSelected(false);
-                bilateralnewyostrzRadioButton.setSelected(false);
-            }
+        gaussawyostrzRadioButton.addActionListener(actionEvent -> {
+            gaussawyostrzRadioButton.setSelected(true);
+            medianowewyostrzRadioButton.setSelected(false);
+            bilateralnewyostrzRadioButton.setSelected(false);
         });
-        medianowewyostrzRadioButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                medianowewyostrzRadioButton.setSelected(true);
-                gaussawyostrzRadioButton.setSelected(false);
-                bilateralnewyostrzRadioButton.setSelected(false);
-            }
+        medianowewyostrzRadioButton.addActionListener(actionEvent -> {
+            medianowewyostrzRadioButton.setSelected(true);
+            gaussawyostrzRadioButton.setSelected(false);
+            bilateralnewyostrzRadioButton.setSelected(false);
         });
-        bilateralnewyostrzRadioButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                bilateralnewyostrzRadioButton.setSelected(true);
-                medianowewyostrzRadioButton.setSelected(false);
-                gaussawyostrzRadioButton.setSelected(false);
-            }
+        bilateralnewyostrzRadioButton.addActionListener(actionEvent -> {
+            bilateralnewyostrzRadioButton.setSelected(true);
+            medianowewyostrzRadioButton.setSelected(false);
+            gaussawyostrzRadioButton.setSelected(false);
         });
     }
 
@@ -131,13 +115,37 @@ public class Menu {
     private void saveImage() {
         JFileChooser chooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
-                "JPG & PDF files", "jpg", "pdf");
+                "JPG & PNG Images", "jpg", "png");
         chooser.setFileFilter(filter);
+
         int returnVal = chooser.showSaveDialog(getRootFrame());
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            filepath = chooser.getSelectedFile().getAbsolutePath();
-            filename = chooser.getSelectedFile().getName();
-            System.out.println("You chose to save this file: " + filename);
+        if (JFileChooser.APPROVE_OPTION == returnVal) {
+            Mat img = Imgcodecs.imread(filename);
+            File fileToSave = chooser.getSelectedFile();
+            filepath = fileToSave.getAbsolutePath();
+
+            System.out.println("Selected the file!");
+            String extension = "";
+            int i = filepath.lastIndexOf('.');
+
+            //sprawdzamy czy jest jakies rozszerzenie
+            if (i > 0) {
+                extension = filepath.substring(i);
+            }
+
+            //jesli brak rozszerzenia lub niepoprawne to dodaj odpowiednie rozszerzenie
+            if (!extension.equals(".jpg") && !extension.equals(".png")) {
+                i = filename.lastIndexOf('.');
+                if (i > 0) {
+                    extension = filename.substring(i);
+                }
+                filepath = filepath + extension;
+            }
+
+            System.out.println("Save as file: " + filepath);
+            Imgcodecs.imwrite(filepath, img);
+        } else {
+            System.out.println("The user cancelled the operation");
         }
     }
 
