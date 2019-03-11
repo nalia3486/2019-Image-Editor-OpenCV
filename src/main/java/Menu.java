@@ -46,12 +46,9 @@ public class Menu {
         wyostrzsrednioButton.addActionListener(e -> OpenCV.addGaussianBlur(41, false, filename, jFrame, 2.0, -1));
         wyostrzmocnoButton.addActionListener(e -> OpenCV.addGaussianBlur(101, false, filename, jFrame, 2.5, -1.5));
 
-        wyjdzButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                System.exit(0);
-            }
-        });
+        wyjdzButton.addActionListener(e -> System.exit(0));
+
+        obrazCzarnoBialyButton.addActionListener(e -> OpenCV.readGrayscaleImage(filename, jFrame));
     }
 
     private void chooseImage() {
