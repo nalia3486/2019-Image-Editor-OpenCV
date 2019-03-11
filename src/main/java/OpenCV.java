@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.opencv.core.Core.addWeighted;
+import static org.opencv.core.CvType.CV_64F;
 
 
 public class OpenCV {
@@ -120,6 +121,24 @@ public class OpenCV {
             Imgproc.GaussianBlur(src, dst, new Size(size, size), 3);
         }
         System.out.println("Added Gaussian Blur");
+        Imgcodecs.imwrite(name, dst);
+        displayImage(Mat2BufferedImage(dst), jFrame);
+    }
+
+    static void addMedianBlur(int size, String name, JFrame jFrame) {
+        Mat dst = new Mat();
+        Mat src = Imgcodecs.imread(name);
+        Imgproc.medianBlur(src, dst, size);
+        System.out.println("Added Median Blur");
+        Imgcodecs.imwrite(name, dst);
+        displayImage(Mat2BufferedImage(dst), jFrame);
+    }
+
+    static void addBilateralBlur(int size, String name, JFrame jFrame) {
+        Mat dst = new Mat();
+        Mat src = Imgcodecs.imread(name);
+        Imgproc.bilateralFilter(src, dst, CV_64F, size, size);
+        System.out.println("Added Bilateral Blur");
         Imgcodecs.imwrite(name, dst);
         displayImage(Mat2BufferedImage(dst), jFrame);
     }

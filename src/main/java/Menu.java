@@ -46,9 +46,27 @@ public class Menu {
         wczytajPlikButton.addActionListener(e -> chooseImage());
         ZAPISZOBRAZButton.addActionListener(e -> saveImage());
 
-        rozmazslaboButton.addActionListener(e -> OpenCV.addGaussianBlur(5, true, filename, jFrame, 0, 0));
-        rozmazsrednioButton.addActionListener(e -> OpenCV.addGaussianBlur(21, true, filename, jFrame, 0, 0));
-        rozmazmocnoButton.addActionListener(e -> OpenCV.addGaussianBlur(71, true, filename, jFrame, 0, 0));
+        rozmazslaboButton.addActionListener(e -> {
+            if (gaussarozmazRadioButton.isSelected())
+                OpenCV.addGaussianBlur(5, true, filename, jFrame, 0, 0);
+            else if (medianowerozmazRadioButton.isSelected())
+                OpenCV.addMedianBlur(5, filename, jFrame);
+            else OpenCV.addBilateralBlur(20, filename, jFrame);
+        });
+        rozmazsrednioButton.addActionListener(e -> {
+            if (gaussarozmazRadioButton.isSelected())
+                OpenCV.addGaussianBlur(21, true, filename, jFrame, 0, 0);
+            else if (medianowerozmazRadioButton.isSelected())
+                OpenCV.addMedianBlur(15, filename, jFrame);
+            else OpenCV.addBilateralBlur(60, filename, jFrame);
+        });
+        rozmazmocnoButton.addActionListener(e -> {
+            if (gaussarozmazRadioButton.isSelected())
+                OpenCV.addGaussianBlur(71, true, filename, jFrame, 0, 0);
+            else if (medianowerozmazRadioButton.isSelected())
+                OpenCV.addMedianBlur(25, filename, jFrame);
+            else OpenCV.addBilateralBlur(100, filename, jFrame);
+        });
 
         wyostrzslaboButton.addActionListener(e -> OpenCV.addGaussianBlur(0, false, filename, jFrame, 1.5, -0.5));
         wyostrzsrednioButton.addActionListener(e -> OpenCV.addGaussianBlur(41, false, filename, jFrame, 2.0, -1));
@@ -139,9 +157,8 @@ public class Menu {
                 if (i > 0) {
                     extension = filename.substring(i);
                 }
-                filepath = filepath + extension;
+                filepath += extension;
             }
-
             System.out.println("Save as file: " + filepath);
             Imgcodecs.imwrite(filepath, img);
         } else {
