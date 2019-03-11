@@ -68,11 +68,13 @@ public class OpenCV {
             return false;
         } else {
             System.out.println(lena.size());
+            Imgcodecs.imwrite(filename, lena);
+            displayImage(Mat2BufferedImage(lena), jFrame);
             return true;
         }
     }
 
-    public static void readGrayscaleImage(String name, JFrame jFrame) {
+    static void readGrayscaleImage(String name, JFrame jFrame) {
         Mat src = Imgcodecs.imread(name, Imgcodecs.CV_LOAD_IMAGE_GRAYSCALE);
         System.out.println("Gray scale image");
         Imgcodecs.imwrite(name, src);
