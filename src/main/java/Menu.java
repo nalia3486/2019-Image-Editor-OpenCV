@@ -117,7 +117,13 @@ public class Menu {
                 System.out.println("Invalid permissions");
             }
             System.out.println("Deletion successful");
-            System.exit(0);
+            if (JOptionPane.showConfirmDialog(null,
+                    "Czy na pewno chcesz wyjść? Ewentualne niezapisane zmiany zostaną utracone.", "Zamknąć?",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+                System.exit(0);
+            }
+
         });
 
         obrazCzarnoBialyButton.addActionListener(e -> OpenCV.readGrayscaleImage(filename, jFrame));
@@ -220,6 +226,18 @@ public class Menu {
         frame.pack();
         frame.setSize(1000, 1000);
         frame.setVisible(true);
+
+        frame.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                if (JOptionPane.showConfirmDialog(frame,
+                        "Czy na pewno chcesz wyjść? Ewentualne niezapisane zmiany zostaną utracone.", "Zamknąć?",
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+                    System.exit(0);
+                }
+            }
+        });
     }
 
     private void enableElements(boolean view) {
