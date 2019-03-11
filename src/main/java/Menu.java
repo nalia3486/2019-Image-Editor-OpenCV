@@ -3,6 +3,8 @@ import org.opencv.imgcodecs.Imgcodecs;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
@@ -39,12 +41,13 @@ public class Menu {
     private JRadioButton gaussawyostrzRadioButton;
     private JRadioButton medianowewyostrzRadioButton;
     private JRadioButton bilateralnewyostrzRadioButton;
+    private JButton COFNIJButton;
+    private JComboBox rodzajzapisu;
     private JFrame jFrame = new JFrame();
     private String filepath;
     private String filename;
 
     private Menu() {
-
         wczytajPlikButton.addActionListener(e -> chooseImage());
         ZAPISZOBRAZButton.addActionListener(e -> saveImage());
 
@@ -52,21 +55,21 @@ public class Menu {
             if (gaussarozmazRadioButton.isSelected())
                 OpenCV.addGaussianBlur(5, true, filename, jFrame, 0, 0);
             else if (medianowerozmazRadioButton.isSelected())
-                OpenCV.addMedianBlur(5, true, filename, jFrame, 0, 0);
+                OpenCV.addMedianBlur(3, true, filename, jFrame, 0, 0);
             else OpenCV.addBilateralBlur(20, true, filename, jFrame, 0, 0);
         });
         rozmazsrednioButton.addActionListener(e -> {
             if (gaussarozmazRadioButton.isSelected())
                 OpenCV.addGaussianBlur(21, true, filename, jFrame, 0, 0);
             else if (medianowerozmazRadioButton.isSelected())
-                OpenCV.addMedianBlur(15, true, filename, jFrame, 0, 0);
+                OpenCV.addMedianBlur(5, true, filename, jFrame, 0, 0);
             else OpenCV.addBilateralBlur(60, true, filename, jFrame, 0, 0);
         });
         rozmazmocnoButton.addActionListener(e -> {
             if (gaussarozmazRadioButton.isSelected())
                 OpenCV.addGaussianBlur(71, true, filename, jFrame, 0, 0);
             else if (medianowerozmazRadioButton.isSelected())
-                OpenCV.addMedianBlur(25, true, filename, jFrame, 0, 0);
+                OpenCV.addMedianBlur(7, true, filename, jFrame, 0, 0);
             else OpenCV.addBilateralBlur(100, true, filename, jFrame, 0, 0);
         });
 
@@ -74,7 +77,7 @@ public class Menu {
             if (gaussawyostrzRadioButton.isSelected())
                 OpenCV.addGaussianBlur(5, false, filename, jFrame, 1.5, -0.5);
             else if (medianowewyostrzRadioButton.isSelected()) {
-                OpenCV.addMedianBlur(5, false, filename, jFrame, 1.5, -0.5);
+                OpenCV.addMedianBlur(3, false, filename, jFrame, 1.5, -0.5);
             } else {
                 OpenCV.addBilateralBlur(20, false, filename, jFrame, 1.5, -0.5);
             }
@@ -84,7 +87,7 @@ public class Menu {
             if (gaussawyostrzRadioButton.isSelected())
                 OpenCV.addGaussianBlur(41, false, filename, jFrame, 2.0, -1);
             else if (medianowewyostrzRadioButton.isSelected()) {
-                OpenCV.addMedianBlur(15, false, filename, jFrame, 2.0, -1);
+                OpenCV.addMedianBlur(5, false, filename, jFrame, 2.0, -1);
             } else {
                 OpenCV.addBilateralBlur(60, false, filename, jFrame, 2.0, -1);
             }
@@ -94,7 +97,7 @@ public class Menu {
             if (gaussawyostrzRadioButton.isSelected())
                 OpenCV.addGaussianBlur(101, false, filename, jFrame, 2.5, -1.5);
             else if (medianowewyostrzRadioButton.isSelected()) {
-                OpenCV.addMedianBlur(55, false, filename, jFrame, 2.5, -1.5);
+                OpenCV.addMedianBlur(7, false, filename, jFrame, 2.5, -1.5);
             } else {
                 OpenCV.addBilateralBlur(200, false, filename, jFrame, 2.5, -1.5);
             }
@@ -150,6 +153,12 @@ public class Menu {
             medianowewyostrzRadioButton.setSelected(false);
             gaussawyostrzRadioButton.setSelected(false);
         });
+        COFNIJButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                reverseChanges();
+            }
+        });
     }
 
     private void chooseImage() {
@@ -164,12 +173,7 @@ public class Menu {
             System.out.println("You chose to open this file: " + filename);
             jFrame.setTitle(chooser.getSelectedFile().getName());
             tytulobrazka.setText("Wczytany obraz: " + chooser.getSelectedFile().getName());
-            if (OpenCV.readImage(filepath, filename, jFrame)) {
-                System.out.println("File successfully loaded");
-                enableElements(true);
-            } else {
-                enableElements(false);
-            }
+            reverseChanges();
         }
     }
 
@@ -231,5 +235,16 @@ public class Menu {
         ZAPISZOBRAZButton.setEnabled(view);
         tytulobrazka.setEnabled(view);
         wyostrzslaboButton.setEnabled(view);
+        COFNIJButton.setEnabled(view);
+        rodzajzapisu.setEnabled(view);
+    }
+
+    private void reverseChanges() {
+        if (OpenCV.readImage(filepath, filename, jFrame)) {
+            System.out.println("File successfully loaded");
+            enableElements(true);
+        } else {
+            enableElements(false);
+        }
     }
 }
