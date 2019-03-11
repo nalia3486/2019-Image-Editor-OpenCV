@@ -29,6 +29,12 @@ public class Menu {
     private JLabel jasnosc;
     private JSlider slider1;
     private JButton zmienJasnoscButton;
+    private JRadioButton gaussarozmazRadioButton;
+    private JRadioButton medianowerozmazRadioButton;
+    private JRadioButton bilateralnerozmazRadioButton;
+    private JRadioButton gaussawyostrzRadioButton;
+    private JRadioButton medianowewyostrzRadioButton;
+    private JRadioButton bilateralnewyostrzRadioButton;
     private JFrame jFrame = new JFrame();
     private String filepath;
     private String filename;
@@ -49,6 +55,56 @@ public class Menu {
         wyjdzButton.addActionListener(e -> System.exit(0));
 
         obrazCzarnoBialyButton.addActionListener(e -> OpenCV.readGrayscaleImage(filename, jFrame));
+
+        gaussarozmazRadioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                gaussarozmazRadioButton.setSelected(true);
+                medianowerozmazRadioButton.setSelected(false);
+                bilateralnerozmazRadioButton.setSelected(false);
+            }
+        });
+        medianowerozmazRadioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                medianowerozmazRadioButton.setSelected(true);
+                gaussarozmazRadioButton.setSelected(false);
+                bilateralnerozmazRadioButton.setSelected(false);
+            }
+        });
+        bilateralnerozmazRadioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                bilateralnerozmazRadioButton.setSelected(true);
+                medianowerozmazRadioButton.setSelected(false);
+                gaussarozmazRadioButton.setSelected(false);
+            }
+        });
+
+        gaussawyostrzRadioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                gaussawyostrzRadioButton.setSelected(true);
+                medianowewyostrzRadioButton.setSelected(false);
+                bilateralnewyostrzRadioButton.setSelected(false);
+            }
+        });
+        medianowewyostrzRadioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                medianowewyostrzRadioButton.setSelected(true);
+                gaussawyostrzRadioButton.setSelected(false);
+                bilateralnewyostrzRadioButton.setSelected(false);
+            }
+        });
+        bilateralnewyostrzRadioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                bilateralnewyostrzRadioButton.setSelected(true);
+                medianowewyostrzRadioButton.setSelected(false);
+                gaussawyostrzRadioButton.setSelected(false);
+            }
+        });
     }
 
     private void chooseImage() {
