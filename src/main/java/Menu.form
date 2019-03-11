@@ -255,7 +255,7 @@
         <properties>
           <enabled value="false"/>
           <model>
-            <item value="Format JPG"/>
+            <item value="Format JPG/PNG"/>
             <item value="Format PDF"/>
           </model>
         </properties>

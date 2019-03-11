@@ -49,7 +49,10 @@ public class Menu {
 
     private Menu() {
         wczytajPlikButton.addActionListener(e -> chooseImage());
-        ZAPISZOBRAZButton.addActionListener(e -> saveImage());
+        ZAPISZOBRAZButton.addActionListener(e -> {
+            if (rodzajzapisu.getSelectedItem().equals("Format JPG/PNG")) saveImage();
+            else OpenCV.imageToPDF(filename, filepath);
+        });
 
         rozmazslaboButton.addActionListener(e -> {
             if (gaussarozmazRadioButton.isSelected())
@@ -177,13 +180,13 @@ public class Menu {
             filepath = chooser.getSelectedFile().getAbsolutePath();
             filename = chooser.getSelectedFile().getName();
             System.out.println("You chose to open this file: " + filename);
-            jFrame.setTitle(chooser.getSelectedFile().getName());
-            tytulobrazka.setText("Wczytany obraz: " + chooser.getSelectedFile().getName());
+            jFrame.setTitle(filename);
+            tytulobrazka.setText("Wczytany obraz: " + filename);
             reverseChanges();
         }
-    }
+        }
 
-    private void saveImage() {
+    void saveImage() {
         JFileChooser chooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
                 "JPG & PNG Images", "jpg", "png");
@@ -218,6 +221,7 @@ public class Menu {
             System.out.println("The user cancelled the operation");
         }
     }
+
 
     public static void main(String[] args) {
         JFrame frame = new JFrame("IMGEditor");

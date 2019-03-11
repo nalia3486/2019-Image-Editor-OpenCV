@@ -1,4 +1,5 @@
 import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.PageSize;
 import com.itextpdf.text.pdf.PdfWriter;
 import org.opencv.core.Core;
@@ -12,9 +13,10 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.util.ArrayList;
-import java.util.List;
+import java.io.IOException;
+import java.net.MalformedURLException;
 
 import static org.opencv.core.Core.addWeighted;
 import static org.opencv.core.CvType.CV_64F;
@@ -33,32 +35,34 @@ public class OpenCV {
     }
 
 
-    static void imageToPDF(String filename) throws Exception {
-        File root = new File("..\\2019-Image-Editor-OpenCV");
+    static void imageToPDF(String filename, String filepath) {
+        File root = new File("D:\\eclipse-workspace\\2019-Image-Editor-OpenCV");
 
         String outputFile = "some.pdf";
 
-        //to na wypadek, gdyby mialo byc wiecej zdjec w jednym pdfie
-        List<String> files = new ArrayList<>();
-        files.add(filename);
-
         Document document = new Document(PageSize.A4, 10, 10, 10, 10);
 
-        PdfWriter.getInstance(document, new FileOutputStream(new File(root, outputFile)));
-        document.open();
-
-        for (String f : files) {
+        try {
+            PdfWriter.getInstance(document, new FileOutputStream(new File(root, outputFile)));
+            document.open();
             document.newPage();
-            com.itextpdf.text.Image image = com.itextpdf.text.Image.getInstance(new File(root, f).getAbsolutePath());
+            com.itextpdf.text.Image image =
+                    com.itextpdf.text.Image.getInstance(new File(root, filename).getAbsolutePath());
             if (image.getHeight() > (document.getPageSize().getHeight() - 20)
                     || image.getScaledWidth() > (document.getPageSize().getWidth() - 20)) {
                 image.scaleToFit(document.getPageSize().getWidth() - 20, document.getPageSize().getHeight() - 20);
             }
-
             document.add(image);
+            document.close();
+        } catch (DocumentException e) {
+            e.printStackTrace();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-        document.close();
     }
 
     static boolean readImage(String filepath, String filename, JFrame jFrame) {
@@ -109,7 +113,6 @@ public class OpenCV {
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }
-
 
     static void addGaussianBlur(int size, boolean blur, String name, JFrame jFrame, double alpha, double beta) {
         Mat dst = new Mat();
