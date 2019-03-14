@@ -3,8 +3,6 @@ import org.opencv.imgcodecs.Imgcodecs;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
@@ -28,11 +26,8 @@ public class Menu {
     private JButton wyjdzButton;
     private JButton zmienSkaleButton;
     private JSlider sliderKontrast;
-    private JLabel Kontrast;
-    private JLabel Skalowanie;
     private JSlider sliderskalowanie;
-    private JButton zmienKotrastButton;
-    private JLabel jasnosc;
+    private JButton zmienKontrastButton;
     private JSlider slider1;
     private JButton zmienJasnoscButton;
     private JRadioButton gaussarozmazRadioButton;
@@ -43,6 +38,9 @@ public class Menu {
     private JRadioButton bilateralnewyostrzRadioButton;
     private JButton COFNIJButton;
     private JComboBox rodzajzapisu;
+    private JButton obroc;
+    private JRadioButton obrocWPoziomie;
+    private JRadioButton obrocWPionie;
     private JFrame jFrame = new JFrame();
     private String filepath;
     private String filename;
@@ -162,11 +160,20 @@ public class Menu {
             medianowewyostrzRadioButton.setSelected(false);
             gaussawyostrzRadioButton.setSelected(false);
         });
-        COFNIJButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                reverseChanges();
-            }
+        COFNIJButton.addActionListener(e -> reverseChanges());
+        obroc.addActionListener(e -> {
+            if (obrocWPionie.isSelected()) OpenCV.addFlip(true, jFrame, filename);
+            else OpenCV.addFlip(false, jFrame, filename);
+        });
+
+        obrocWPionie.addActionListener(actionEvent -> {
+            obrocWPionie.setSelected(true);
+            obrocWPoziomie.setSelected(false);
+        });
+
+        obrocWPoziomie.addActionListener(actionEvent -> {
+            obrocWPoziomie.setSelected(true);
+            obrocWPionie.setSelected(false);
         });
     }
 
@@ -261,6 +268,7 @@ public class Menu {
         wyostrzslaboButton.setEnabled(view);
         COFNIJButton.setEnabled(view);
         rodzajzapisu.setEnabled(view);
+        obroc.setEnabled(view);
     }
 
     private void reverseChanges() {

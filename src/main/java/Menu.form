@@ -1,24 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="Menu">
-  <grid id="27dc6" binding="Menu" layout-manager="GridLayoutManager" row-count="21" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="27dc6" binding="Menu" layout-manager="GridLayoutManager" row-count="15" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="20" y="20" width="679" height="624"/>
+      <xy x="-11" y="19" width="513" height="678"/>
     </constraints>
     <properties/>
     <border type="none"/>
     <children>
-      <component id="ec3ad" class="javax.swing.JButton" binding="wczytajPlikButton" default-binding="true">
-        <constraints>
-          <grid row="0" column="0" row-span="1" col-span="2" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="WCZYTAJ OBRAZ"/>
-        </properties>
-      </component>
       <component id="ddf9e" class="javax.swing.JButton" binding="rozmazslaboButton">
         <constraints>
-          <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="168" height="30"/>
+          </grid>
         </constraints>
         <properties>
           <enabled value="false"/>
@@ -27,7 +21,9 @@
       </component>
       <component id="bc057" class="javax.swing.JButton" binding="rozmazsrednioButton">
         <constraints>
-          <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="216" height="30"/>
+          </grid>
         </constraints>
         <properties>
           <enabled value="false"/>
@@ -36,7 +32,7 @@
       </component>
       <component id="7782a" class="javax.swing.JButton" binding="rozmazmocnoButton">
         <constraints>
-          <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="5" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <enabled value="false"/>
@@ -45,7 +41,9 @@
       </component>
       <component id="6214e" class="javax.swing.JButton" binding="wyostrzsrednioButton">
         <constraints>
-          <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="216" height="30"/>
+          </grid>
         </constraints>
         <properties>
           <enabled value="false"/>
@@ -54,7 +52,9 @@
       </component>
       <component id="31b76" class="javax.swing.JButton" binding="wyostrzslaboButton">
         <constraints>
-          <grid row="9" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="168" height="30"/>
+          </grid>
         </constraints>
         <properties>
           <enabled value="false"/>
@@ -63,144 +63,35 @@
       </component>
       <component id="7dd7a" class="javax.swing.JButton" binding="wyostrzmocnoButton">
         <constraints>
-          <grid row="9" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="8" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <enabled value="false"/>
           <text value="mocno"/>
         </properties>
       </component>
-      <component id="ce758" class="javax.swing.JButton" binding="obrazCzarnoBialyButton">
-        <constraints>
-          <grid row="19" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <enabled value="false"/>
-          <text value="Obraz czarno-biały"/>
-        </properties>
-      </component>
       <component id="6c359" class="javax.swing.JLabel" binding="tytulobrazka">
         <constraints>
-          <grid row="1" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="1" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <enabled value="false"/>
           <text value=""/>
         </properties>
       </component>
-      <component id="33fe5" class="javax.swing.JButton" binding="ZAPISZOBRAZButton" default-binding="true">
-        <constraints>
-          <grid row="3" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <enabled value="false"/>
-          <text value="ZAPISZ JAKO"/>
-        </properties>
-      </component>
-      <component id="cbeb0" class="javax.swing.JButton" binding="wyjdzButton">
-        <constraints>
-          <grid row="20" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <text value="Wyjdź"/>
-        </properties>
-      </component>
-      <component id="aad16" class="javax.swing.JButton" binding="zmienSkaleButton">
-        <constraints>
-          <grid row="18" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <enabled value="false"/>
-          <text value="Zmień skalę"/>
-        </properties>
-      </component>
-      <component id="f5358" class="javax.swing.JLabel" binding="Kontrast">
-        <constraints>
-          <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <enabled value="false"/>
-          <horizontalAlignment value="0"/>
-          <horizontalTextPosition value="0"/>
-          <text value="Kontrast:"/>
-        </properties>
-      </component>
       <component id="b6ef9" class="javax.swing.JSlider" binding="sliderKontrast">
         <constraints>
-          <grid row="11" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="10" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <enabled value="false"/>
-        </properties>
-      </component>
-      <component id="1b3c0" class="javax.swing.JLabel" binding="Skalowanie">
-        <constraints>
-          <grid row="16" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <enabled value="false"/>
-          <horizontalAlignment value="0"/>
-          <horizontalTextPosition value="0"/>
-          <text value="Skalowanie:"/>
-        </properties>
-      </component>
-      <component id="96443" class="javax.swing.JSlider" binding="sliderskalowanie">
-        <constraints>
-          <grid row="17" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <enabled value="false"/>
-        </properties>
-      </component>
-      <component id="c4392" class="javax.swing.JButton" binding="zmienKotrastButton">
-        <constraints>
-          <grid row="12" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <enabled value="false"/>
-          <text value="Zmień kotrast"/>
-        </properties>
-      </component>
-      <component id="8e7b0" class="javax.swing.JLabel" binding="jasnosc">
-        <constraints>
-          <grid row="13" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <enabled value="false"/>
-          <horizontalAlignment value="0"/>
-          <horizontalTextPosition value="0"/>
-          <text value="Jasność:"/>
-        </properties>
-      </component>
-      <component id="fadc7" class="javax.swing.JSlider" binding="slider1" default-binding="true">
-        <constraints>
-          <grid row="14" column="0" row-span="1" col-span="3" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <enabled value="false"/>
-        </properties>
-      </component>
-      <component id="36ed6" class="javax.swing.JButton" binding="zmienJasnoscButton">
-        <constraints>
-          <grid row="15" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <enabled value="false"/>
-          <text value="Zmień jasność"/>
-        </properties>
-      </component>
-      <component id="773c" class="javax.swing.JRadioButton" binding="gaussarozmazRadioButton">
-        <constraints>
-          <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <selected value="true"/>
-          <text value="Gaussa"/>
         </properties>
       </component>
       <component id="e804b" class="javax.swing.JRadioButton" binding="medianowerozmazRadioButton">
         <constraints>
-          <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="4" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="216" height="19"/>
+          </grid>
         </constraints>
         <properties>
           <text value="Medianowe"/>
@@ -208,24 +99,17 @@
       </component>
       <component id="46fcc" class="javax.swing.JRadioButton" binding="bilateralnerozmazRadioButton">
         <constraints>
-          <grid row="5" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="4" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Bilateralne"/>
         </properties>
       </component>
-      <component id="50190" class="javax.swing.JRadioButton" binding="gaussawyostrzRadioButton">
-        <constraints>
-          <grid row="8" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
-        </constraints>
-        <properties>
-          <selected value="true"/>
-          <text value="Gaussa"/>
-        </properties>
-      </component>
       <component id="1b723" class="javax.swing.JRadioButton" binding="medianowewyostrzRadioButton">
         <constraints>
-          <grid row="8" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="7" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="216" height="19"/>
+          </grid>
         </constraints>
         <properties>
           <text value="Medianowe"/>
@@ -233,7 +117,7 @@
       </component>
       <component id="3135f" class="javax.swing.JRadioButton" binding="bilateralnewyostrzRadioButton">
         <constraints>
-          <grid row="8" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="7" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <text value="Bilateralne"/>
@@ -241,7 +125,7 @@
       </component>
       <component id="b00bf" class="javax.swing.JButton" binding="COFNIJButton" default-binding="true">
         <constraints>
-          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+          <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <enabled value="false"/>
@@ -250,7 +134,9 @@
       </component>
       <component id="ffe5c" class="javax.swing.JComboBox" binding="rodzajzapisu">
         <constraints>
-          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="2" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="2" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="216" height="30"/>
+          </grid>
         </constraints>
         <properties>
           <enabled value="false"/>
@@ -262,22 +148,168 @@
       </component>
       <component id="217f3" class="javax.swing.JLabel" binding="wyostrz">
         <constraints>
-          <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="6" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="216" height="16"/>
+          </grid>
         </constraints>
         <properties>
           <enabled value="false"/>
           <text value="Wyostrz:"/>
         </properties>
       </component>
+      <component id="cbeb0" class="javax.swing.JButton" binding="wyjdzButton">
+        <constraints>
+          <grid row="14" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="216" height="30"/>
+          </grid>
+        </constraints>
+        <properties>
+          <text value="Wyjdź"/>
+        </properties>
+      </component>
+      <component id="33fe5" class="javax.swing.JButton" binding="ZAPISZOBRAZButton" default-binding="true">
+        <constraints>
+          <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="168" height="30"/>
+          </grid>
+        </constraints>
+        <properties>
+          <enabled value="false"/>
+          <text value="ZAPISZ JAKO"/>
+        </properties>
+      </component>
       <component id="8b02b" class="javax.swing.JLabel" binding="rozmaz">
         <constraints>
-          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+          <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="216" height="16"/>
+          </grid>
         </constraints>
         <properties>
           <enabled value="false"/>
           <horizontalAlignment value="0"/>
           <horizontalTextPosition value="0"/>
           <text value="Rozmaż:"/>
+        </properties>
+      </component>
+      <component id="773c" class="javax.swing.JRadioButton" binding="gaussarozmazRadioButton">
+        <constraints>
+          <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="168" height="19"/>
+          </grid>
+        </constraints>
+        <properties>
+          <selected value="true"/>
+          <text value="Gaussa"/>
+        </properties>
+      </component>
+      <component id="50190" class="javax.swing.JRadioButton" binding="gaussawyostrzRadioButton">
+        <constraints>
+          <grid row="7" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="168" height="19"/>
+          </grid>
+        </constraints>
+        <properties>
+          <selected value="true"/>
+          <text value="Gaussa"/>
+        </properties>
+      </component>
+      <component id="ec3ad" class="javax.swing.JButton" binding="wczytajPlikButton" default-binding="true">
+        <constraints>
+          <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <text value="WCZYTAJ OBRAZ"/>
+        </properties>
+      </component>
+      <component id="ce758" class="javax.swing.JButton" binding="obrazCzarnoBialyButton">
+        <constraints>
+          <grid row="9" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <enabled value="false"/>
+          <text value="Obraz czarno-biały"/>
+        </properties>
+      </component>
+      <component id="96443" class="javax.swing.JSlider" binding="sliderskalowanie">
+        <constraints>
+          <grid row="13" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <enabled value="false"/>
+        </properties>
+      </component>
+      <component id="36ed6" class="javax.swing.JButton" binding="zmienJasnoscButton">
+        <constraints>
+          <grid row="12" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="216" height="30"/>
+          </grid>
+        </constraints>
+        <properties>
+          <enabled value="false"/>
+          <text value="Zmień jasność"/>
+        </properties>
+      </component>
+      <component id="fadc7" class="javax.swing.JSlider" binding="slider1" default-binding="true">
+        <constraints>
+          <grid row="12" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <enabled value="false"/>
+        </properties>
+      </component>
+      <component id="4428f" class="javax.swing.JRadioButton" binding="obrocWPionie">
+        <constraints>
+          <grid row="11" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="168" height="19"/>
+          </grid>
+        </constraints>
+        <properties>
+          <enabled value="true"/>
+          <text value="Obróć w pionie"/>
+        </properties>
+      </component>
+      <component id="d25a2" class="javax.swing.JButton" binding="obroc">
+        <constraints>
+          <grid row="11" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="168" height="30"/>
+          </grid>
+        </constraints>
+        <properties>
+          <enabled value="false"/>
+          <text value="Obróć"/>
+        </properties>
+      </component>
+      <component id="514fa" class="javax.swing.JRadioButton" binding="obrocWPoziomie">
+        <constraints>
+          <grid row="11" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="8" fill="0" indent="0" use-parent-layout="false">
+            <preferred-size width="168" height="19"/>
+          </grid>
+        </constraints>
+        <properties>
+          <enabled value="true"/>
+          <text value="Obróć w poziomie"/>
+        </properties>
+      </component>
+      <component id="aad16" class="javax.swing.JButton" binding="zmienSkaleButton">
+        <constraints>
+          <grid row="10" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="216" height="30"/>
+          </grid>
+        </constraints>
+        <properties>
+          <enabled value="false"/>
+          <text value="Zmień skalę"/>
+        </properties>
+      </component>
+      <component id="c4392" class="javax.swing.JButton" binding="zmienKontrastButton">
+        <constraints>
+          <grid row="13" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
+            <preferred-size width="216" height="30"/>
+          </grid>
+        </constraints>
+        <properties>
+          <enabled value="false"/>
+          <text value="Zmień kontrast"/>
         </properties>
       </component>
     </children>

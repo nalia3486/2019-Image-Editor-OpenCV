@@ -13,12 +13,12 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBufferByte;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 
 import static org.opencv.core.Core.addWeighted;
+import static org.opencv.core.Core.flip;
 import static org.opencv.core.CvType.CV_64F;
 
 
@@ -55,8 +55,6 @@ public class OpenCV {
             document.add(image);
             document.close();
         } catch (DocumentException e) {
-            e.printStackTrace();
-        } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -150,5 +148,14 @@ public class OpenCV {
         System.out.println("Added Bilateral Blur");
         Imgcodecs.imwrite(name, dst);
         displayImage(Mat2BufferedImage(dst), jFrame);
+    }
+
+    static void addFlip(boolean flip, JFrame jFrame, String name) {
+        Mat img = Imgcodecs.imread(name);
+        if (flip) flip(img, img, 1); //odbity w pionie
+        else flip(img, img, 0); //odbity w poziomie
+        System.out.println("Flip image");
+        Imgcodecs.imwrite(name, img);
+        displayImage(Mat2BufferedImage(img), jFrame);
     }
 }
