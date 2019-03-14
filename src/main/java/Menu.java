@@ -48,8 +48,8 @@ public class Menu {
     private Menu() {
         wczytajPlikButton.addActionListener(e -> chooseImage());
         ZAPISZOBRAZButton.addActionListener(e -> {
-            if (rodzajzapisu.getSelectedItem().equals("Format JPG/PNG")) saveImage();
-            else OpenCV.imageToPDF(filename, filepath);
+            if (rodzajzapisu.getSelectedItem().equals("Format JPG/PNG")) saveImage(true);
+            else saveImage(false);
         });
 
         rozmazslaboButton.addActionListener(e -> {
@@ -193,7 +193,7 @@ public class Menu {
         }
         }
 
-    void saveImage() {
+    void saveImage(boolean format) {
         JFileChooser chooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
                 "JPG & PNG Images", "jpg", "png");
@@ -203,27 +203,37 @@ public class Menu {
         if (JFileChooser.APPROVE_OPTION == returnVal) {
             Mat img = Imgcodecs.imread(filename);
             File fileToSave = chooser.getSelectedFile();
-            filepath = fileToSave.getAbsolutePath();
+            String newFilepath = fileToSave.getAbsolutePath();
 
             System.out.println("Selected the file!");
             String extension = "";
-            int i = filepath.lastIndexOf('.');
+            int i = newFilepath.lastIndexOf('.');
 
             //sprawdzamy czy jest jakies rozszerzenie
             if (i > 0) {
-                extension = filepath.substring(i);
+                extension = newFilepath.substring(i);
             }
 
-            //jesli brak rozszerzenia lub niepoprawne to dodaj odpowiednie rozszerzenie
-            if (!extension.equals(".jpg") && !extension.equals(".png")) {
-                i = filename.lastIndexOf('.');
-                if (i > 0) {
-                    extension = filename.substring(i);
+            if (format == true) {
+                //jesli brak rozszerzenia lub niepoprawne to dodaj odpowiednie rozszerzenie
+                if (!extension.equals(".jpg") && !extension.equals(".png")) {
+                    i = filename.lastIndexOf('.');
+                    if (i > 0) {
+                        extension = filename.substring(i);
+                    }
+                    newFilepath += extension;
                 }
-                filepath += extension;
+                filepath = newFilepath;
+                System.out.println("Save as file: " + newFilepath);
+                Imgcodecs.imwrite(newFilepath, img);
+            } else {
+                if (!extension.equals(".pdf")) {
+                    extension = ".pdf";
+                    newFilepath += extension;
+                }
+                System.out.println(newFilepath);
+                OpenCV.imageToPDF(filename, newFilepath);
             }
-            System.out.println("Save as file: " + filepath);
-            Imgcodecs.imwrite(filepath, img);
         } else {
             System.out.println("The user cancelled the operation");
         }

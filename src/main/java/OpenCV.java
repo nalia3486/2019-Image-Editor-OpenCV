@@ -36,18 +36,18 @@ public class OpenCV {
 
 
     static void imageToPDF(String filename, String filepath) {
-        File root = new File("D:\\eclipse-workspace\\2019-Image-Editor-OpenCV");
+        File root = new File(filepath);
 
-        String outputFile = "some.pdf";
-
+        System.out.println("pdf: " + filepath);
         Document document = new Document(PageSize.A4, 10, 10, 10, 10);
 
         try {
-            PdfWriter.getInstance(document, new FileOutputStream(new File(root, outputFile)));
+            PdfWriter.getInstance(document, new FileOutputStream(new File(filepath)));
             document.open();
             document.newPage();
             com.itextpdf.text.Image image =
-                    com.itextpdf.text.Image.getInstance(new File(root, filename).getAbsolutePath());
+                    com.itextpdf.text.Image.getInstance(new File("D:\\eclipse-workspace\\2019-Image-Editor-OpenCV",
+                            filename).getAbsolutePath());
             if (image.getHeight() > (document.getPageSize().getHeight() - 20)
                     || image.getScaledWidth() > (document.getPageSize().getWidth() - 20)) {
                 image.scaleToFit(document.getPageSize().getWidth() - 20, document.getPageSize().getHeight() - 20);

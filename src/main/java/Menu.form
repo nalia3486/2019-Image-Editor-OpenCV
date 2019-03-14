@@ -265,6 +265,7 @@
         </constraints>
         <properties>
           <enabled value="true"/>
+          <selected value="true"/>
           <text value="Obróć w pionie"/>
         </properties>
       </component>
