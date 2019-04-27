@@ -193,7 +193,7 @@ public class Menu {
         }
         }
 
-    void saveImage(boolean format) {
+    private void saveImage(boolean format) {
         JFileChooser chooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter(
                 "JPG & PNG Images", "jpg", "png");
@@ -214,7 +214,7 @@ public class Menu {
                 extension = newFilepath.substring(i);
             }
 
-            if (format == true) {
+            if (format) {
                 //jesli brak rozszerzenia lub niepoprawne to dodaj odpowiednie rozszerzenie
                 if (!extension.equals(".jpg") && !extension.equals(".png")) {
                     i = filename.lastIndexOf('.');
@@ -245,7 +245,7 @@ public class Menu {
         frame.setContentPane(new Menu().Menu);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
-        frame.setSize(1000, 1000);
+        frame.setExtendedState(frame.MAXIMIZED_BOTH);
         frame.setVisible(true);
 
         frame.addWindowListener(new java.awt.event.WindowAdapter() {

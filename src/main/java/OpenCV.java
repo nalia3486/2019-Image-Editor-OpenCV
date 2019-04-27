@@ -46,7 +46,7 @@ public class OpenCV {
             document.open();
             document.newPage();
             com.itextpdf.text.Image image =
-                    com.itextpdf.text.Image.getInstance(new File("D:\\eclipse-workspace\\2019-Image-Editor-OpenCV",
+                    com.itextpdf.text.Image.getInstance(new File(System.getProperty("user.dir"),
                             filename).getAbsolutePath());
             if (image.getHeight() > (document.getPageSize().getHeight() - 20)
                     || image.getScaledWidth() > (document.getPageSize().getWidth() - 20)) {
