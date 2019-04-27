@@ -25,10 +25,10 @@ public class Menu {
     private JLabel tytulobrazka;
     private JButton wyjdzButton;
     private JButton zmienSkaleButton;
+    private JSlider sliderSkal;
     private JSlider sliderKontrast;
-    private JSlider sliderskalowanie;
     private JButton zmienKontrastButton;
-    private JSlider slider1;
+    private JSlider sliderJasnosc;
     private JButton zmienJasnoscButton;
     private JRadioButton gaussarozmazRadioButton;
     private JRadioButton medianowerozmazRadioButton;
@@ -43,7 +43,7 @@ public class Menu {
     private JRadioButton obrocWPionie;
     private JFrame jFrame = new JFrame();
     private String filepath;
-    private String filename;
+    private static String filename;
 
     private Menu() {
         wczytajPlikButton.addActionListener(e -> chooseImage());
@@ -105,26 +105,13 @@ public class Menu {
         });
 
         wyjdzButton.addActionListener(ex -> {
-            try {
-                Paths.get(filename);
-                Files.deleteIfExists(Paths.get(filename));
-            } catch (InvalidPathException | NullPointerException e) {
-                System.out.println("There is no file");
-            } catch (NoSuchFileException e) {
-                System.out.println("No such file/directory exists");
-            } catch (DirectoryNotEmptyException e) {
-                System.out.println("Directory is not empty");
-            } catch (IOException e) {
-                System.out.println("Invalid permissions");
-            }
-            System.out.println("Deletion successful");
             if (JOptionPane.showConfirmDialog(null,
                     "Czy na pewno chcesz wyjść? Ewentualne niezapisane zmiany zostaną utracone.", "Zamknąć?",
                     JOptionPane.YES_NO_OPTION,
                     JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+                exitProgram();
                 System.exit(0);
             }
-
         });
 
         obrazCzarnoBialyButton.addActionListener(e -> OpenCV.readGrayscaleImage(filename, jFrame));
@@ -175,6 +162,28 @@ public class Menu {
             obrocWPoziomie.setSelected(true);
             obrocWPionie.setSelected(false);
         });
+
+        sliderSkal.addChangeListener(actionEvent -> {
+            float sliderValue = sliderSkal.getValue();
+            System.out.println(sliderValue);
+            OpenCV.scaleImage(jFrame, filename, sliderValue);
+        });
+    }
+
+    private static void exitProgram() {
+        try {
+            Paths.get(filename);
+            Files.deleteIfExists(Paths.get(filename));
+        } catch (InvalidPathException | NullPointerException e) {
+            System.out.println("There is no file");
+        } catch (NoSuchFileException e) {
+            System.out.println("No such file/directory exists");
+        } catch (DirectoryNotEmptyException e) {
+            System.out.println("Directory is not empty");
+        } catch (IOException e) {
+            System.out.println("Invalid permissions");
+        }
+        System.out.println("Deletion successful");
     }
 
     private void chooseImage() {
@@ -255,6 +264,7 @@ public class Menu {
                         "Czy na pewno chcesz wyjść? Ewentualne niezapisane zmiany zostaną utracone.", "Zamknąć?",
                         JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE) == JOptionPane.YES_OPTION) {
+                    exitProgram();
                     System.exit(0);
                 } else {
                     frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
@@ -279,6 +289,9 @@ public class Menu {
         COFNIJButton.setEnabled(view);
         rodzajzapisu.setEnabled(view);
         obroc.setEnabled(view);
+        zmienSkaleButton.setEnabled(view);
+        sliderSkal.setEnabled(view);
+        sliderSkal.setValue(0);
     }
 
     private void reverseChanges() {

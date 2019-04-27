@@ -79,7 +79,7 @@
           <text value=""/>
         </properties>
       </component>
-      <component id="b6ef9" class="javax.swing.JSlider" binding="sliderKontrast">
+      <component id="b6ef9" class="javax.swing.JSlider" binding="sliderSkal">
         <constraints>
           <grid row="10" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
@@ -230,12 +230,14 @@
           <text value="Obraz czarno-biały"/>
         </properties>
       </component>
-      <component id="96443" class="javax.swing.JSlider" binding="sliderskalowanie">
+      <component id="96443" class="javax.swing.JSlider" binding="sliderKontrast">
         <constraints>
           <grid row="13" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties>
           <enabled value="false"/>
+          <maximum value="5"/>
+          <minimum value="-5"/>
         </properties>
       </component>
       <component id="36ed6" class="javax.swing.JButton" binding="zmienJasnoscButton">
@@ -249,7 +251,7 @@
           <text value="Zmień jasność"/>
         </properties>
       </component>
-      <component id="fadc7" class="javax.swing.JSlider" binding="slider1" default-binding="true">
+      <component id="fadc7" class="javax.swing.JSlider" binding="sliderJasnosc">
         <constraints>
           <grid row="12" column="2" row-span="1" col-span="2" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>

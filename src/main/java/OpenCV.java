@@ -20,6 +20,7 @@ import java.net.MalformedURLException;
 import static org.opencv.core.Core.addWeighted;
 import static org.opencv.core.Core.flip;
 import static org.opencv.core.CvType.CV_64F;
+import static org.opencv.imgproc.Imgproc.resize;
 
 
 public class OpenCV {
@@ -158,4 +159,14 @@ public class OpenCV {
         Imgcodecs.imwrite(name, img);
         displayImage(Mat2BufferedImage(img), jFrame);
     }
+
+    static void scaleImage(JFrame jFrame, String name, float sliderValue) {
+        Mat img = Imgcodecs.imread(name);
+        sliderValue /= 10;
+        resize(img, img, new Size(img.cols() + sliderValue, img.rows() + sliderValue), 0, 0, Imgproc.INTER_CUBIC);
+        System.out.println("Scale image: " + sliderValue);
+        Imgcodecs.imwrite(name, img);
+        displayImage(Mat2BufferedImage(img), jFrame);
+    }
+
 }
