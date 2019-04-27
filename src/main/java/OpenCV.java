@@ -108,7 +108,7 @@ public class OpenCV {
         JLabel label = new JLabel();
         label.setIcon(icon);
         frame.add(label);
-        frame.setLocation(505, 10);
+        frame.setLocation(601, 0);
         frame.setVisible(true);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     }

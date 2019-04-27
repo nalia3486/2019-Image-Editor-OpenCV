@@ -3,6 +3,8 @@ import org.opencv.imgcodecs.Imgcodecs;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
@@ -41,6 +43,12 @@ public class Menu {
     private JButton obroc;
     private JRadioButton obrocWPoziomie;
     private JRadioButton obrocWPionie;
+    private JRadioButton mnożenieRadioButton;
+    private JRadioButton odejmowanieRadioButton;
+    private JRadioButton przezroczystoscRadioButton;
+    private JRadioButton dzielenieRadioButton;
+    private JRadioButton dodawanieRadioButton;
+    private JButton wybierzDrugiObrazButton;
     private JFrame jFrame = new JFrame();
     private String filepath;
     private static String filename;
@@ -48,7 +56,7 @@ public class Menu {
     private Menu() {
         wczytajPlikButton.addActionListener(e -> chooseImage());
         ZAPISZOBRAZButton.addActionListener(e -> {
-            if (rodzajzapisu.getSelectedItem().equals("Format JPG/PNG")) saveImage(true);
+            if (rodzajzapisu.getSelectedItem().equals("Format zapisu JPG/PNG")) saveImage(true);
             else saveImage(false);
         });
 
@@ -168,6 +176,61 @@ public class Menu {
             System.out.println(sliderValue);
             OpenCV.scaleImage(jFrame, filename, sliderValue);
         });
+
+        przezroczystoscRadioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                przezroczystoscRadioButton.setSelected(true);
+                dodawanieRadioButton.setSelected(false);
+                odejmowanieRadioButton.setSelected(false);
+                mnożenieRadioButton.setSelected(false);
+                dzielenieRadioButton.setSelected(false);
+            }
+        });
+
+        dodawanieRadioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                przezroczystoscRadioButton.setSelected(false);
+                dodawanieRadioButton.setSelected(true);
+                odejmowanieRadioButton.setSelected(false);
+                mnożenieRadioButton.setSelected(false);
+                dzielenieRadioButton.setSelected(false);
+            }
+        });
+
+        odejmowanieRadioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                przezroczystoscRadioButton.setSelected(false);
+                dodawanieRadioButton.setSelected(false);
+                odejmowanieRadioButton.setSelected(true);
+                mnożenieRadioButton.setSelected(false);
+                dzielenieRadioButton.setSelected(false);
+            }
+        });
+
+        mnożenieRadioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                przezroczystoscRadioButton.setSelected(false);
+                dodawanieRadioButton.setSelected(false);
+                odejmowanieRadioButton.setSelected(false);
+                mnożenieRadioButton.setSelected(true);
+                dzielenieRadioButton.setSelected(false);
+            }
+        });
+
+        dzielenieRadioButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                przezroczystoscRadioButton.setSelected(false);
+                dodawanieRadioButton.setSelected(false);
+                odejmowanieRadioButton.setSelected(false);
+                mnożenieRadioButton.setSelected(false);
+                dzielenieRadioButton.setSelected(true);
+            }
+        });
     }
 
     private static void exitProgram() {
@@ -254,7 +317,8 @@ public class Menu {
         frame.setContentPane(new Menu().Menu);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.pack();
-        frame.setExtendedState(frame.MAXIMIZED_BOTH);
+//        frame.setExtendedState(frame.MAXIMIZED_BOTH);
+        frame.setSize(600, 750);
         frame.setVisible(true);
 
         frame.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -292,6 +356,7 @@ public class Menu {
         zmienSkaleButton.setEnabled(view);
         sliderSkal.setEnabled(view);
         sliderSkal.setValue(0);
+        wybierzDrugiObrazButton.setEnabled(view);
     }
 
     private void reverseChanges() {
