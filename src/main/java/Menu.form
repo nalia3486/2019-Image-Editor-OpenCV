@@ -92,7 +92,7 @@
           <majorTickSpacing value="10"/>
           <maximum value="50"/>
           <minimum value="-50"/>
-          <minorTickSpacing value="1"/>
+          <minorTickSpacing value="5"/>
           <paintLabels value="true"/>
           <paintTicks value="true"/>
           <value value="0"/>
@@ -234,12 +234,14 @@
         </constraints>
         <properties>
           <enabled value="false"/>
-          <majorTickSpacing value="1"/>
-          <maximum value="3"/>
-          <minimum value="1"/>
+          <majorTickSpacing value="5"/>
+          <maximum value="30"/>
+          <minimum value="10"/>
           <minorTickSpacing value="1"/>
           <paintLabels value="true"/>
-          <value value="1"/>
+          <paintTicks value="true"/>
+          <snapToTicks value="false"/>
+          <value value="10"/>
         </properties>
       </component>
       <component id="36ed6" class="javax.swing.JButton" binding="zmienJasnoscButton">
@@ -262,7 +264,7 @@
           <majorTickSpacing value="20"/>
           <maximum value="100"/>
           <minimum value="-100"/>
-          <minorTickSpacing value="1"/>
+          <minorTickSpacing value="5"/>
           <paintLabels value="true"/>
           <paintTicks value="true"/>
           <value value="0"/>
@@ -392,7 +394,7 @@
           <text value="Wybierz drugi obraz"/>
         </properties>
       </component>
-      <component id="640fb" class="javax.swing.JRadioButton" binding="mnożenieRadioButton" default-binding="true">
+      <component id="640fb" class="javax.swing.JRadioButton" binding="mnozenieRadioButton" default-binding="true">
         <constraints>
           <grid row="16" column="3" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
         </constraints>

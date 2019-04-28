@@ -3,8 +3,6 @@ import org.opencv.imgcodecs.Imgcodecs;
 
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.*;
@@ -43,16 +41,19 @@ public class Menu {
     private JButton obroc;
     private JRadioButton obrocWPoziomie;
     private JRadioButton obrocWPionie;
-    private JRadioButton mnożenieRadioButton;
+    private JRadioButton mnozenieRadioButton;
     private JRadioButton odejmowanieRadioButton;
     private JRadioButton przezroczystoscRadioButton;
     private JRadioButton dzielenieRadioButton;
     private JRadioButton dodawanieRadioButton;
+    private int flag = 0;
     private JButton wybierzDrugiObrazButton;
     private JLabel dwaObrazyLabel;
     private JFrame jFrame = new JFrame();
     private String filepath;
+    private String filepath2;
     private static String filename;
+    private static String filename2;
 
     private Menu() {
         wczytajPlikButton.addActionListener(e -> chooseImage());
@@ -186,71 +187,78 @@ public class Menu {
         });
 
         zmienKontrastButton.addActionListener(actionEvent -> {
-            float sliderValue = sliderKontrast.getValue();
+            float sliderValue = sliderKontrast.getValue() / 10;
             System.out.println(sliderValue);
             OpenCV.addContrastAndBrightness(jFrame, filename, sliderValue, 1);
         });
 
-        przezroczystoscRadioButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
+        wybierzDrugiObrazButton.addActionListener(e -> {
+            if (chooseSecondImage()) {
+                if (OpenCV.readSecondImage(filename, filename2, filepath2)) {
+                    System.out.println("File successfully loaded");
+                    System.out.println("Two images operation");
+                    OpenCV.mix2Images(jFrame, filename, filename2, flag);
+                }
+            }
+        });
+
+        przezroczystoscRadioButton.addActionListener(e -> {
+            flag = 0;
                 przezroczystoscRadioButton.setSelected(true);
                 dodawanieRadioButton.setSelected(false);
                 odejmowanieRadioButton.setSelected(false);
-                mnożenieRadioButton.setSelected(false);
+            mnozenieRadioButton.setSelected(false);
                 dzielenieRadioButton.setSelected(false);
-            }
         });
 
-        dodawanieRadioButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
+        dodawanieRadioButton.addActionListener(e -> {
+            flag = 1;
                 przezroczystoscRadioButton.setSelected(false);
                 dodawanieRadioButton.setSelected(true);
                 odejmowanieRadioButton.setSelected(false);
-                mnożenieRadioButton.setSelected(false);
+            mnozenieRadioButton.setSelected(false);
                 dzielenieRadioButton.setSelected(false);
-            }
         });
 
-        odejmowanieRadioButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
+        odejmowanieRadioButton.addActionListener(e -> {
+            flag = 2;
                 przezroczystoscRadioButton.setSelected(false);
                 dodawanieRadioButton.setSelected(false);
                 odejmowanieRadioButton.setSelected(true);
-                mnożenieRadioButton.setSelected(false);
+            mnozenieRadioButton.setSelected(false);
                 dzielenieRadioButton.setSelected(false);
-            }
         });
 
-        mnożenieRadioButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
+        mnozenieRadioButton.addActionListener(e -> {
+            flag = 3;
                 przezroczystoscRadioButton.setSelected(false);
                 dodawanieRadioButton.setSelected(false);
                 odejmowanieRadioButton.setSelected(false);
-                mnożenieRadioButton.setSelected(true);
+            mnozenieRadioButton.setSelected(true);
                 dzielenieRadioButton.setSelected(false);
-            }
         });
 
-        dzielenieRadioButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
+        dzielenieRadioButton.addActionListener(e -> {
+            flag = 4;
                 przezroczystoscRadioButton.setSelected(false);
                 dodawanieRadioButton.setSelected(false);
                 odejmowanieRadioButton.setSelected(false);
-                mnożenieRadioButton.setSelected(false);
+            mnozenieRadioButton.setSelected(false);
                 dzielenieRadioButton.setSelected(true);
-            }
         });
     }
 
     private static void exitProgram() {
+
+        deletion(filename);
+        deletion(filename2);
+        System.out.println("Deletion successful");
+    }
+
+    private static void deletion(String file) {
         try {
-            Paths.get(filename);
-            Files.deleteIfExists(Paths.get(filename));
+            Paths.get(file);
+            Files.deleteIfExists(Paths.get(file));
         } catch (InvalidPathException | NullPointerException e) {
             System.out.println("There is no file");
         } catch (NoSuchFileException e) {
@@ -260,7 +268,6 @@ public class Menu {
         } catch (IOException e) {
             System.out.println("Invalid permissions");
         }
-        System.out.println("Deletion successful");
     }
 
     private void chooseImage() {
@@ -277,7 +284,21 @@ public class Menu {
             tytulobrazka.setText("Wczytany obraz: " + filename);
             reverseChanges();
         }
-        }
+    }
+
+    private boolean chooseSecondImage() {
+        JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(
+                "JPG & PNG Images", "jpg", "png");
+        chooser.setFileFilter(filter);
+        int returnVal = chooser.showOpenDialog(getRootFrame());
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            filepath2 = chooser.getSelectedFile().getAbsolutePath();
+            filename2 = chooser.getSelectedFile().getName();
+            System.out.println("You chose to open this file: " + filename2);
+            return true;
+        } else return false;
+    }
 
     private void saveImage(boolean format) {
         JFileChooser chooser = new JFileChooser();

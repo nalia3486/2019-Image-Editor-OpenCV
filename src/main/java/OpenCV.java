@@ -78,6 +78,28 @@ public class OpenCV {
         }
     }
 
+    static boolean readSecondImage(String filename, String filename2, String filepath2) {
+        Mat lena = Imgcodecs.imread(filepath2);
+        if (lena.empty()) {
+            System.out.println("Could not open or find the image");
+            JOptionPane.showMessageDialog(null, "Wybrano niewłaściwy format pliku", "Błąd", JOptionPane.ERROR_MESSAGE);
+            return false;
+        } else if (!check2ImagesSize(filename, lena)) {
+            System.out.println(lena.size());
+            System.out.println("Wrong size! Images have to have the same size!");
+            return false;
+        } else {
+            Imgcodecs.imwrite(filename2, lena);
+            System.out.println(lena.size());
+            return true;
+        }
+    }
+
+    private static boolean check2ImagesSize(String filepath, Mat lena) {
+        Mat lena2 = Imgcodecs.imread(filepath);
+        return lena.size().equals(lena2.size());
+    }
+
     static void readGrayscaleImage(String name, JFrame jFrame) {
         Mat src = Imgcodecs.imread(name, Imgcodecs.CV_LOAD_IMAGE_GRAYSCALE);
         System.out.println("Gray scale image");
@@ -174,11 +196,48 @@ public class OpenCV {
         BufferedImage xxx = Mat2BufferedImage(img);
         //obraz, -1, kontrast, jasnosc
         img.convertTo(img, -1, contrast, brightness);
-        displayImage(Mat2BufferedImage(img), jFrame);
-
-        System.out.println("Contrast and Brightness");
+        System.out.println("Contrast: " + contrast + " brightness: " + brightness);
         Imgcodecs.imwrite(name, img);
         displayImage(Mat2BufferedImage(img), jFrame);
     }
 
+    static void mix2Images(JFrame jFrame, String name, String name2, int flag) {
+        Mat img = Imgcodecs.imread(name);
+        Mat img2 = Imgcodecs.imread(name2);
+        //new iamge = A+B
+        Mat img3 = Imgcodecs.imread(name);
+        switch (flag) {
+            case 0:
+                addWeighted(img, 0.5, img2, 0.5, 0, img3);
+                System.out.println("Transparency operation");
+                break;
+            case 1:
+                Core.add(img, img2, img3);
+                System.out.println("Add operation");
+                break;
+            case 2:
+                Core.subtract(img, img2, img3);
+                System.out.println("Subtract operation");
+                break;
+            case 3:
+                Core.multiply(img, img2, img3);
+                System.out.println("Multiply operation");
+                break;
+            case 4:
+                Core.divide(img, img2, img3);
+                System.out.println("Divide operation");
+                break;
+            default:
+                System.out.println("None");
+        }
+        addNewMatrix(name, name2, jFrame, img3);
+    }
+
+    private static void addNewMatrix(String name, String name2, JFrame jFrame, Mat img3) {
+//        name = name.substring(0,name.length()-4);
+//        String newName = name+"_"+name2;
+        System.out.println("New image: " + name);
+        Imgcodecs.imwrite(name, img3);
+        displayImage(Mat2BufferedImage(img3), jFrame);
+    }
 }
