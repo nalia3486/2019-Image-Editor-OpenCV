@@ -162,9 +162,21 @@ public class OpenCV {
 
     static void scaleImage(JFrame jFrame, String name, float sliderValue) {
         Mat img = Imgcodecs.imread(name);
-        sliderValue /= 10;
         resize(img, img, new Size(img.cols() + sliderValue, img.rows() + sliderValue), 0, 0, Imgproc.INTER_CUBIC);
         System.out.println("Scale image: " + sliderValue);
+        Imgcodecs.imwrite(name, img);
+        displayImage(Mat2BufferedImage(img), jFrame);
+    }
+
+    static void addContrastAndBrightness(JFrame jFrame, String name, float contrast, int brightness) {
+        Mat img = Imgcodecs.imread(name);
+
+        BufferedImage xxx = Mat2BufferedImage(img);
+        //obraz, -1, kontrast, jasnosc
+        img.convertTo(img, -1, contrast, brightness);
+        displayImage(Mat2BufferedImage(img), jFrame);
+
+        System.out.println("Contrast and Brightness");
         Imgcodecs.imwrite(name, img);
         displayImage(Mat2BufferedImage(img), jFrame);
     }

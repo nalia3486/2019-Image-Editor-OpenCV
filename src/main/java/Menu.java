@@ -172,10 +172,22 @@ public class Menu {
             obrocWPionie.setSelected(false);
         });
 
-        sliderSkal.addChangeListener(actionEvent -> {
+        zmienSkaleButton.addActionListener(actionEvent -> {
             float sliderValue = sliderSkal.getValue();
             System.out.println(sliderValue);
             OpenCV.scaleImage(jFrame, filename, sliderValue);
+        });
+
+        zmienJasnoscButton.addActionListener(actionEvent -> {
+            int sliderValue = sliderJasnosc.getValue();
+            System.out.println(sliderValue);
+            OpenCV.addContrastAndBrightness(jFrame, filename, 1, sliderValue);
+        });
+
+        zmienKontrastButton.addActionListener(actionEvent -> {
+            float sliderValue = sliderKontrast.getValue();
+            System.out.println(sliderValue);
+            OpenCV.addContrastAndBrightness(jFrame, filename, sliderValue, 1);
         });
 
         przezroczystoscRadioButton.addActionListener(new ActionListener() {
@@ -359,6 +371,10 @@ public class Menu {
         sliderSkal.setValue(0);
         wybierzDrugiObrazButton.setEnabled(view);
         dwaObrazyLabel.setEnabled(view);
+        sliderJasnosc.setEnabled(view);
+        zmienJasnoscButton.setEnabled(view);
+        sliderKontrast.setEnabled(view);
+        zmienKontrastButton.setEnabled(view);
     }
 
     private void reverseChanges() {
