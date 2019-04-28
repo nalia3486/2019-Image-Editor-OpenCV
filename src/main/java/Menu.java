@@ -49,6 +49,7 @@ public class Menu {
     private JRadioButton dzielenieRadioButton;
     private JRadioButton dodawanieRadioButton;
     private JButton wybierzDrugiObrazButton;
+    private JLabel dwaObrazyLabel;
     private JFrame jFrame = new JFrame();
     private String filepath;
     private static String filename;
@@ -357,6 +358,7 @@ public class Menu {
         sliderSkal.setEnabled(view);
         sliderSkal.setValue(0);
         wybierzDrugiObrazButton.setEnabled(view);
+        dwaObrazyLabel.setEnabled(view);
     }
 
     private void reverseChanges() {
