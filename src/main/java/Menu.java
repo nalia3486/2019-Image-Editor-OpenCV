@@ -156,6 +156,7 @@ public class Menu {
             medianowewyostrzRadioButton.setSelected(false);
             gaussawyostrzRadioButton.setSelected(false);
         });
+
         COFNIJButton.addActionListener(e -> reverseChanges());
         obroc.addActionListener(e -> {
             if (obrocWPionie.isSelected()) OpenCV.addFlip(true, jFrame, filename);
@@ -380,6 +381,9 @@ public class Menu {
     private void reverseChanges() {
         if (OpenCV.readImage(filepath, filename, jFrame)) {
             System.out.println("File successfully loaded");
+            sliderSkal.setValue(0);
+            sliderJasnosc.setValue(0);
+            sliderKontrast.setValue(1);
             enableElements(true);
         } else {
             enableElements(false);

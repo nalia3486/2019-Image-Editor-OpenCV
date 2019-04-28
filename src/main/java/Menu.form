@@ -95,6 +95,7 @@
           <minorTickSpacing value="1"/>
           <paintLabels value="true"/>
           <paintTicks value="true"/>
+          <value value="0"/>
         </properties>
       </component>
       <component id="e804b" class="javax.swing.JRadioButton" binding="medianowerozmazRadioButton">
@@ -233,8 +234,12 @@
         </constraints>
         <properties>
           <enabled value="false"/>
-          <maximum value="5"/>
-          <minimum value="-5"/>
+          <majorTickSpacing value="1"/>
+          <maximum value="3"/>
+          <minimum value="1"/>
+          <minorTickSpacing value="1"/>
+          <paintLabels value="true"/>
+          <value value="1"/>
         </properties>
       </component>
       <component id="36ed6" class="javax.swing.JButton" binding="zmienJasnoscButton">
@@ -254,6 +259,13 @@
         </constraints>
         <properties>
           <enabled value="false"/>
+          <majorTickSpacing value="20"/>
+          <maximum value="100"/>
+          <minimum value="-100"/>
+          <minorTickSpacing value="1"/>
+          <paintLabels value="true"/>
+          <paintTicks value="true"/>
+          <value value="0"/>
         </properties>
       </component>
       <component id="4428f" class="javax.swing.JRadioButton" binding="obrocWPionie">
