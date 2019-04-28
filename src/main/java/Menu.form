@@ -90,9 +90,9 @@
         <properties>
           <enabled value="false"/>
           <majorTickSpacing value="10"/>
-          <maximum value="50"/>
-          <minimum value="-50"/>
-          <minorTickSpacing value="5"/>
+          <maximum value="30"/>
+          <minimum value="-30"/>
+          <minorTickSpacing value="2"/>
           <paintLabels value="true"/>
           <paintTicks value="true"/>
           <value value="0"/>
@@ -234,9 +234,10 @@
         </constraints>
         <properties>
           <enabled value="false"/>
+          <extent value="10"/>
           <majorTickSpacing value="5"/>
           <maximum value="30"/>
-          <minimum value="10"/>
+          <minimum value="0"/>
           <minorTickSpacing value="1"/>
           <paintLabels value="true"/>
           <paintTicks value="true"/>
@@ -261,10 +262,10 @@
         </constraints>
         <properties>
           <enabled value="false"/>
-          <majorTickSpacing value="20"/>
-          <maximum value="100"/>
-          <minimum value="-100"/>
-          <minorTickSpacing value="5"/>
+          <majorTickSpacing value="50"/>
+          <maximum value="200"/>
+          <minimum value="-200"/>
+          <minorTickSpacing value="10"/>
           <paintLabels value="true"/>
           <paintTicks value="true"/>
           <value value="0"/>

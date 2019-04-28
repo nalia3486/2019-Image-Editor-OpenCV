@@ -176,20 +176,34 @@ public class Menu {
 
         zmienSkaleButton.addActionListener(actionEvent -> {
             float sliderValue = sliderSkal.getValue();
-            System.out.println(sliderValue);
-            OpenCV.scaleImage(jFrame, filename, sliderValue);
+            OpenCV.scaleImage(jFrame, filename, sliderValue, true);
+        });
+
+        sliderSkal.addChangeListener(actionEvent -> {
+            float sliderValue = sliderSkal.getValue();
+            OpenCV.scaleImage(jFrame, filename, sliderValue, false);
         });
 
         zmienJasnoscButton.addActionListener(actionEvent -> {
             int sliderValue = sliderJasnosc.getValue();
             System.out.println(sliderValue);
-            OpenCV.addContrastAndBrightness(jFrame, filename, 1, sliderValue);
+            OpenCV.addContrastAndBrightness(jFrame, filename, 1, sliderValue, true);
+        });
+
+        sliderJasnosc.addChangeListener(actionEvent -> {
+            int sliderValue = sliderJasnosc.getValue();
+            OpenCV.addContrastAndBrightness(jFrame, filename, 1, sliderValue, false);
         });
 
         zmienKontrastButton.addActionListener(actionEvent -> {
-            float sliderValue = sliderKontrast.getValue() / 10;
+            float sliderValue = sliderKontrast.getValue();
             System.out.println(sliderValue);
-            OpenCV.addContrastAndBrightness(jFrame, filename, sliderValue, 1);
+            OpenCV.addContrastAndBrightness(jFrame, filename, sliderValue / 10, 1, true);
+        });
+
+        sliderKontrast.addChangeListener(actionEvent -> {
+            float sliderValue = sliderKontrast.getValue();
+            OpenCV.addContrastAndBrightness(jFrame, filename, sliderValue / 10, 1, false);
         });
 
         wybierzDrugiObrazButton.addActionListener(e -> {
@@ -404,7 +418,7 @@ public class Menu {
             System.out.println("File successfully loaded");
             sliderSkal.setValue(0);
             sliderJasnosc.setValue(0);
-            sliderKontrast.setValue(1);
+            sliderKontrast.setValue(10);
             enableElements(true);
         } else {
             enableElements(false);

@@ -182,22 +182,29 @@ public class OpenCV {
         displayImage(Mat2BufferedImage(img), jFrame);
     }
 
-    static void scaleImage(JFrame jFrame, String name, float sliderValue) {
-        Mat img = Imgcodecs.imread(name);
-        resize(img, img, new Size(img.cols() + sliderValue, img.rows() + sliderValue), 0, 0, Imgproc.INTER_CUBIC);
+    static void scaleImage(JFrame jFrame, String name, float sliderValue, boolean flag) {
         System.out.println("Scale image: " + sliderValue);
-        Imgcodecs.imwrite(name, img);
-        displayImage(Mat2BufferedImage(img), jFrame);
+        Mat img = Imgcodecs.imread(name);
+        if (sliderValue != 0) {
+            if (sliderValue < 0) {
+                sliderValue *= -1;
+                resize(img, img, new Size(img.cols() / sliderValue, img.rows() / sliderValue), 0, 0,
+                        Imgproc.INTER_AREA);
+            } else
+                resize(img, img, new Size(img.cols() * sliderValue, img.rows() * sliderValue), 0, 0,
+                        Imgproc.INTER_CUBIC);
+            if (flag) Imgcodecs.imwrite(name, img);
+            displayImage(Mat2BufferedImage(img), jFrame);
+        }
     }
 
-    static void addContrastAndBrightness(JFrame jFrame, String name, float contrast, int brightness) {
+    static void addContrastAndBrightness(JFrame jFrame, String name, float contrast, int brightness, boolean flag) {
         Mat img = Imgcodecs.imread(name);
-
         BufferedImage xxx = Mat2BufferedImage(img);
         //obraz, -1, kontrast, jasnosc
         img.convertTo(img, -1, contrast, brightness);
         System.out.println("Contrast: " + contrast + " brightness: " + brightness);
-        Imgcodecs.imwrite(name, img);
+        if (flag) Imgcodecs.imwrite(name, img);
         displayImage(Mat2BufferedImage(img), jFrame);
     }
 
