@@ -346,6 +346,7 @@ public class Menu {
                 }
                 filepath = newFilepath;
                 System.out.println("Save as file: " + newFilepath);
+                JOptionPane.showMessageDialog(null, "Zapisano pomyślnie obraz.");
                 Imgcodecs.imwrite(newFilepath, img);
             } else {
                 if (!extension.equals(".pdf")) {
@@ -422,6 +423,9 @@ public class Menu {
             enableElements(true);
         } else {
             enableElements(false);
+            wczytajPlikButton.setEnabled(true);
+            tytulobrazka.setText("");
+            jFrame.setVisible(false);
         }
     }
 }

@@ -55,6 +55,7 @@ public class OpenCV {
             }
             document.add(image);
             document.close();
+            JOptionPane.showMessageDialog(null, "Zapisano pomyślnie jako plik '.pdf'.");
         } catch (DocumentException e) {
             e.printStackTrace();
         } catch (MalformedURLException e) {
@@ -86,6 +87,7 @@ public class OpenCV {
             return false;
         } else if (!check2ImagesSize(filename, lena)) {
             System.out.println(lena.size());
+            JOptionPane.showMessageDialog(null, "Zły rozmiar obrazu! Oba obrazki muszą mieć ten sam rozmiar!", "Błąd", JOptionPane.ERROR_MESSAGE);
             System.out.println("Wrong size! Images have to have the same size!");
             return false;
         } else {
