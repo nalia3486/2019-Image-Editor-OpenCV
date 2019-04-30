@@ -234,7 +234,8 @@
         </constraints>
         <properties>
           <enabled value="false"/>
-          <extent value="10"/>
+          <extent value="0"/>
+          <inverted value="false"/>
           <majorTickSpacing value="5"/>
           <maximum value="30"/>
           <minimum value="0"/>
