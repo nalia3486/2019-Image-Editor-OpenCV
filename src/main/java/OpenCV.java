@@ -28,14 +28,6 @@ public class OpenCV {
         System.loadLibrary(Core.NATIVE_LIBRARY_NAME);
     }
 
-    static void superimposingImages(Mat img, Mat img1, JFrame jFrame) {
-        Mat img3 = new Mat();
-        addWeighted(img, 0.5, img1, 0.5, 0, img3);
-        BufferedImage image = Mat2BufferedImage(img3);
-        displayImage(Mat2BufferedImage(img3), jFrame);
-    }
-
-
     static void imageToPDF(String filename, String filepath) {
         File root = new File(filepath);
 

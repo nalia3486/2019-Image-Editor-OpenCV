@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="2019-Image-Editor-OpenCV:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/2019_Image_Editor_OpenCV_jar</output-path>
+    <root id="archive" name="2019-Image-Editor-OpenCV.jar">
+      <element id="directory" name="META-INF">
+        <element id="file-copy" path="$PROJECT_DIR$/META-INF/MANIFEST.MF" />
+      </element>
+    </root>
+  </artifact>
+</component>
